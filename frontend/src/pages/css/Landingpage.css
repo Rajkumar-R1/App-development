@@ -1,0 +1,35 @@
+.landing-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.landing-header {
+    margin-bottom: 40px;
+}
+
+.landing-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.overview-section {
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 500px;
+    text-align: left;
+}
+
+.cta-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.cta-button:hover {
+    background-color: #0056b3;
+}
