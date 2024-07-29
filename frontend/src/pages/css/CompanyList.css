@@ -1,0 +1,136 @@
+/* Homepage.css */
+.homepage-container {
+    background-image: url("D:\App-development\frontend\src\pages\css\q4.avif"); /* Use the correct path to your image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.homepage-header {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.homepage-header h1 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+    font-weight: 700;
+}
+
+.homepage-header p {
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+.homepage-content {
+    width: 100%;
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.9); /* Slightly more opaque for readability */
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+}
+
+.homepage-section {
+    margin-bottom: 30px;
+}
+
+.homepage-section h2 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+    color: #333;
+    font-weight: 600;
+}
+
+.homepage-section p {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    color: #666;
+}
+
+.homepage-button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-weight: 600;
+}
+
+.homepage-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.company-list-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.company-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.company-item {
+    background: #fff;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 150px;
+}
+
+.company-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.company-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.company-item h3 {
+    font-size: 1.5em;
+    color: #333;
+    font-weight: 500;
+}
+
+.homepage-footer {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    left: 0;
+}
+
+.footer-logo img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.homepage-footer p {
+    font-size: 0.9em;
+}

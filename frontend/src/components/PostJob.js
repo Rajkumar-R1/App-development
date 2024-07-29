@@ -61,7 +61,7 @@ const PostJob = () => {
                 </div>
                 <button type="submit" className="post-button">Post Job</button>
             </form>
-            <button className="back-button" onClick={() => navigate('/home')}>Back to Homepage</button>
+            <button className="back-button" onClick={() => navigate('/homepage')}>Back to Homepage</button>
         </div>
     );
 };

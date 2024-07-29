@@ -23,6 +23,12 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+/* Homepage.css */
+
+.homepage-container {
+  padding-top: 60px; /* Adjust this value if your navbar height changes */
+}
+
 
 .App-link {
   color: #61dafb;

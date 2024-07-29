@@ -3,19 +3,51 @@ import { useNavigate } from 'react-router-dom';
 import '../pages/css/JobSearch.css';
 
 const JobSearch = () => {
-    const [keyword, setKeyword] = useState('');
-    const [location, setLocation] = useState('');
+    const [jobTitle, setJobTitle] = useState('');
+    const [jobLocation, setJobLocation] = useState('');
     const [results, setResults] = useState([]);
+    const [filteredResults, setFilteredResults] = useState([]);
+    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
+
+    const validateForm = () => {
+        const errors = {};
+        if (!jobTitle) {
+            errors.jobTitle = "Job Title or Keywords is required";
+        }
+        if (!jobLocation) {
+            errors.jobLocation = "City or Location is required";
+        }
+        return errors;
+    };
 
     const handleSearch = (e) => {
         e.preventDefault();
-        // Add search logic here
-        console.log('Searching for:', keyword, 'in', location);
-        setResults([
-            { title: 'Software Developer', company: 'Company A', location: 'New York, NY' },
-            { title: 'Project Manager', company: 'Company B', location: 'San Francisco, CA' },
-        ]); // Update with actual search results
+        const formErrors = validateForm();
+        if (Object.keys(formErrors).length === 0) {
+            console.log('Searching for:', jobTitle, 'in', jobLocation);
+            // Mock search results
+            const searchResults = [
+                { title: 'Software Developer', company: 'Company A', location: 'New York, NY' },
+                { title: 'Project Manager', company: 'Company B', location: 'San Francisco, CA' },
+                { title: 'Data Scientist', company: 'Company C', location: 'Chicago, IL' },
+                { title: 'Product Manager', company: 'Company D', location: 'Austin, TX' },
+                { title: 'UX Designer', company: 'Company E', location: 'Seattle, WA' },
+                { title: 'Marketing Specialist', company: 'Company F', location: 'Boston, MA' },
+                { title: 'DevOps Engineer', company: 'Company G', location: 'Denver, CO' },
+                { title: 'Frontend Developer', company: 'Company A', location: 'New York, NY' },
+                { title: 'Backend Developer', company: 'Company A', location: 'New York, NY' }
+            ];
+            setResults(searchResults);
+            setFilteredResults(searchResults);
+        } else {
+            setErrors(formErrors);
+        }
+    };
+
+    const handleCompanyClick = (company) => {
+        const filtered = results.filter(job => job.company === company);
+        setFilteredResults(filtered);
     };
 
     return (
@@ -23,27 +55,29 @@ const JobSearch = () => {
             <h2>Search Jobs</h2>
             <form onSubmit={handleSearch} className="search-form">
                 <div className="form-group">
-                    <label>Keyword:</label>
+                    <label>Job Title or Keywords:</label>
                     <input
                         type="text"
-                        value={keyword}
-                        onChange={(e) => setKeyword(e.target.value)}
+                        value={jobTitle}
+                        onChange={(e) => setJobTitle(e.target.value)}
                     />
+                    {errors.jobTitle && <div className="error">{errors.jobTitle}</div>}
                 </div>
                 <div className="form-group">
-                    <label>Location:</label>
+                    <label>City or Location:</label>
                     <input
                         type="text"
-                        value={location}
-                        onChange={(e) => setLocation(e.target.value)}
+                        value={jobLocation}
+                        onChange={(e) => setJobLocation(e.target.value)}
                     />
+                    {errors.jobLocation && <div className="error">{errors.jobLocation}</div>}
                 </div>
                 <button type="submit" className="search-button">Search</button>
             </form>
             <div className="results">
-                {results.length > 0 ? (
-                    results.map((job, index) => (
-                        <div key={index} className="job">
+                {filteredResults.length > 0 ? (
+                    filteredResults.map((job, index) => (
+                        <div key={index} className="job" onClick={() => handleCompanyClick(job.company)}>
                             <h3>{job.title}</h3>
                             <p>{job.company}</p>
                             <p>{job.location}</p>

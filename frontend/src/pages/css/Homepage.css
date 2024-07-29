@@ -1,37 +1,101 @@
 .homepage-container {
-    text-align: center;
-    padding: 50px 20px;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Gradient background */
-}
-
-.homepage-content {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-top: 30px;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+    background-image: url('D:\App-development\frontend\src\pages\css\h7.jpeg'); /* Add your background image URL here */
+    background-size: cover; /* Make sure the image covers the entire container */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
 }
 
-.section {
-    width: 300px;
-    margin: 20px;
+.homepage-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.homepage-header h1 {
+    font-size: 3rem;
+    color: #333;
+}
+
+.homepage-header p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.homepage-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px 0;
+    background: #fff;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.homepage-section h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.homepage-section p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #666;
 }
 
 .homepage-button {
     padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007BFF;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
-    margin-top: 10px;
+    transition: background-color 0.3s ease;
 }
 
 .homepage-button:hover {
     background-color: #0056b3;
+}
+
+.homepage-footer {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.footer-logo img {
+    max-width: 200px;
+    margin-bottom: 10px;
+}
+
+.homepage-footer p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    margin-bottom: 10px;
+}
+
+.footer-icon {
+    width: 30px;
+    margin: 0 10px;
+    vertical-align: middle;
+}
+
+.footer-icon:hover {
+    opacity: 0.7;
 }

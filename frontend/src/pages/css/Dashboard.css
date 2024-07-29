@@ -1,26 +1,69 @@
-.dashboard-container {
-    padding: 20px;
-    max-width: 600px;
-    margin: auto;
-    text-align: center;
+/* Apply background to the entire page */
+body {
+    background-image: url('D:\App-development\frontend\src\pages\css\I8.avif'); /* Add your image path here */
+    background-size: cover; /* Ensure the image covers the entire page */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-attachment: fixed; /* Ensure the background stays fixed when scrolling */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    height: 100vh; /* Ensure the body takes the full height of the viewport */
 }
 
+/* Container for the dashboard */
+.dashboard-container {
+    padding: 40px 20px;
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Header and paragraphs styling */
+.dashboard-container h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333; /* Change text color for better visibility */
+}
+
+.dashboard-container p {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #555; /* Change text color for better visibility */
+}
+
+/* Flexbox for button alignment */
 .dashboard-buttons {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-top: 20px;
+    margin-top: 30px;
+    align-items: center;
 }
 
+/* General button styling */
 .dashboard-buttons button {
-    padding: 10px 20px;
+    padding: 12px 25px;
     border: none;
-    border-radius: 4px;
+    border-radius: 25px;
     background-color: #007bff;
     color: white;
     cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
+/* Button hover effect */
 .dashboard-buttons button:hover {
     background-color: #0056b3;
+    transform: translateY(-3px);
+}
+
+/* Button active state for click effect */
+.dashboard-buttons button:active {
+    transform: translateY(0);
+    background-color: #004090;
 }
