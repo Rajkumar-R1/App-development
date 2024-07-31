@@ -1,0 +1,32 @@
+.view-applicants-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f5f7fa;
+    padding: 20px;
+}
+
+.view-applicants-content {
+    width: 100%;
+    max-width: 800px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.applicants-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.applicants-table th,
+.applicants-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+.applicants-table th {
+    background-color: #f4f4f4;
+}

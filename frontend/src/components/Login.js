@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../pages/css/Login.css';
 
-const Login = () => {
+const Login = ({ setUserType }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
@@ -24,9 +24,16 @@ const Login = () => {
         const formErrors = validateForm();
         if (Object.keys(formErrors).length === 0) {
             console.log('Email:', email, 'Password:', password);
-            // Perform login logic here
-            // If login is successful, navigate to the homepage
-            navigate('/homepage');
+            if (email === 'admin@example.com') {
+                setUserType('admin');
+                navigate('/admin-dashboard');
+            } else if (email === 'company@example.com') {
+                setUserType('company');
+                navigate('/company-dashboard');
+            } else {
+                setUserType('user');
+                navigate('/user-dashboard');
+            }
         } else {
             setErrors(formErrors);
         }

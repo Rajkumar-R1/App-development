@@ -42,73 +42,85 @@ const UserProfile = () => {
 
     return (
         <div className="user-profile-container">
-            <h1>User Profile</h1>
+            <h1 className="user-profile-title">User Profile</h1>
             <form className="user-profile-form" onSubmit={handleSubmit}>
-                <label>
-                    Name:
+                <div className="form-group">
+                    <label htmlFor="name">Name:</label>
                     <input
                         type="text"
+                        id="name"
                         name="name"
                         value={user.name}
                         onChange={handleChange}
+                        placeholder="John Doe"
                     />
-                </label>
-                <label>
-                    Email:
+                </div>
+                <div className="form-group">
+                    <label htmlFor="email">Email:</label>
                     <input
                         type="email"
+                        id="email"
                         name="email"
                         value={user.email}
                         onChange={handleChange}
+                        placeholder="john.doe@example.com"
                     />
-                </label>
-                <label>
-                    Phone:
+                </div>
+                <div className="form-group">
+                    <label htmlFor="phone">Phone:</label>
                     <input
                         type="text"
+                        id="phone"
                         name="phone"
                         value={user.phone}
                         onChange={handleChange}
+                        placeholder="Your phone number"
                     />
-                </label>
-                <label>
-                    Address:
+                </div>
+                <div className="form-group">
+                    <label htmlFor="address">Address:</label>
                     <input
                         type="text"
+                        id="address"
                         name="address"
                         value={user.address}
                         onChange={handleChange}
+                        placeholder="Your address"
                     />
-                </label>
-                <label>
-                    LinkedIn Profile:
+                </div>
+                <div className="form-group">
+                    <label htmlFor="linkedin">LinkedIn Profile:</label>
                     <input
                         type="text"
+                        id="linkedin"
                         name="linkedin"
                         value={user.linkedin}
                         onChange={handleChange}
+                        placeholder="Your LinkedIn profile URL"
                     />
-                </label>
-                <label>
-                    Bio:
+                </div>
+                <div className="form-group">
+                    <label htmlFor="bio">Bio:</label>
                     <textarea
+                        id="bio"
                         name="bio"
                         value={user.bio}
                         onChange={handleChange}
+                        placeholder="A short bio about yourself"
                     />
-                </label>
-                <label>
-                    Upload Resume:
+                </div>
+                <div className="form-group">
+                    <label htmlFor="resume">Upload Resume:</label>
                     <input
                         type="file"
+                        id="resume"
                         onChange={handleUploadResume}
                     />
-                </label>
-                <button type="submit">Save Changes</button>
+                </div>
+                <div className="form-actions">
+                    <button type="submit" className="btn-primary">Save Changes</button>
+                </div>
             </form>
-            <button className="navigate-button" onClick={() => navigate('/dashboard')}>
-                Go to Dashboard
-            </button>
         </div>
     );
 };
