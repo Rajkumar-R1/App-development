@@ -1,57 +1,46 @@
 package com.example.backend.service;
-import java.util.List;
 
+import com.example.backend.model.UserModel;
+import com.example.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.example.backend.model.User;
-import com.example.backend.repository.UserRepo;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
-    
+
     @Autowired
-    UserRepo ur;
-    
-    public User create(User uu)
-    {
-        return ur.save(uu);
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public List<UserModel> getAllUsers() {
+        return userRepository.findAll();
     }
 
-    public List <User> getAlldetails()
-    {
-        return ur.findAll();
-    }
-    public User getUserById(int id)
-    {
-        return ur.findById(id).orElse(null);
+    public Optional<UserModel> getUserById(Long id) {
+        return userRepository.findById(id);
     }
 
-    public boolean updateDetails(int id,User u)
-    {
-        if(this.getUserById(id)==null)
-        {
-            return false;
-        }
-        try{
-            ur.save(u);
-        }
-        catch(Exception e)
-        {
-            return false;
-        }
-        return true;
+    public UserModel createUser(UserModel user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
     }
 
-    public boolean deleteUser(int id)
-    {
-        if(this.getUserById(id) == null)
-        {
-            return false;
-        }
-        ur.deleteById(id);
-        return true;
+    public UserModel updateUser(Long id, UserModel userDetails) {
+        UserModel user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        user.setEmail(userDetails.getEmail());
+        user.setPassword(userDetails.getPassword());
+        user.setCompanyEmail(userDetails.getCompanyEmail());
+        user.setCompanyPassword(userDetails.getCompanyPassword());
+        return userRepository.save(user);
     }
-    
 
-
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
 }

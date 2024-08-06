@@ -1,55 +1,60 @@
 package com.example.backend.controller;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
 
-import com.example.backend.model.User;
+import com.example.backend.model.UserModel;
 import com.example.backend.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
 @RestController
+@RequestMapping("/api/users")
 public class UserController {
+
     @Autowired
-    UserService us;
-
-    @PostMapping("/post")
-    public ResponseEntity<User> add(@RequestBody User u)
-    {
-        User newuser = us.create(u);
-        return new ResponseEntity<>(newuser,HttpStatus.CREATED);
+    private UserService userService;
+    @GetMapping
+    @PreAuthorize("hasAuthority('USER')or hasAuthority('ADMIN')")
+    public List<UserModel> getAllUsers() {
+        return userService.getAllUsers();
     }
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('USER')or hasAuthority('ADMIN')")
+    public ResponseEntity<UserModel> getUserById(@PathVariable Long id) {
+        Optional<UserModel> user = userService.getUserById(id);
+        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/createUser")
+    @PreAuthorize("hasAuthority('USER')or hasAuthority('ADMIN')")
+    public UserModel createUser(@RequestBody UserModel user) {
+        return userService.createUser(user);
+    }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('USER')or hasAuthority('ADMIN')")
+    public ResponseEntity<UserModel> updateUser(@PathVariable Long id, @RequestBody UserModel userDetails) {
+        Optional<UserModel> user = userService.getUserById(id);
+        if (user.isPresent()) {
+            UserModel updatedUser = userService.updateUser(id, userDetails);
+            return ResponseEntity.ok(updatedUser);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     
-    @GetMapping("/getdetails")
-    public ResponseEntity <List<User>> getAllUsers()
-    {
-        List<User>obj = us.getAlldetails();
-        return new ResponseEntity<>(obj,HttpStatus.OK);
-    }
-
-    @PutMapping("/api/user/{userId}")
-    public ResponseEntity<User> putMethodName(@PathVariable("userId") int id, @RequestBody User employee) {
-        if(us.updateDetails(id,employee) == true)
-        {
-            return new ResponseEntity<>(employee,HttpStatus.OK);
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('USER')or hasAuthority('ADMIN')")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        if (userService.getUserById(id).isPresent()) {
+            userService.deleteUser(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
         }
-        
-        return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
     }
-
-    @DeleteMapping("/api/deleteuser/{userId}")
-    public ResponseEntity<Boolean> delete(@PathVariable("userId") int id)
-    {
-        if(us.deleteUser(id) == true)
-        {
-            return new ResponseEntity<>(true,HttpStatus.OK);
-        }
-        return new ResponseEntity<>(false,HttpStatus.NOT_FOUND);
-    }
-
 }
